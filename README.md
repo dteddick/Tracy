@@ -37,10 +37,13 @@ python3 build.py
 
 Validate after launch with Google's Rich Results Test and https://validator.schema.org, then submit `sitemap.xml` in Google Search Console.
 
+## Contact form
+
+Leads are sent through Formspree (form `xbgdjbpy`) to the email set in Tracy's Formspree account, with the subject "New lead from TracyMortgageLady.com". A hidden honeypot field (`_gotcha`) blocks basic spam bots. Change the destination email or turn on extra spam filtering in the Formspree dashboard.
+
 ## To do before launch
 
 - **Photo:** `assets/tracy-freeman.jpg` (+ `.webp`). To replace it, keep the same file names and a roughly 760×800 crop.
-- **Contact form:** create a free form at https://formspree.io and replace `YOUR_FORM_ID` in `src/pages/index.html`. Until then, the form opens a text message to Tracy's phone.
 - **Google Business Profile:** create or claim one. It's the biggest local SEO factor. Once you have profile links (Google, Facebook, LinkedIn, Instagram), add them as `sameAs` in `build.py`.
 - **Compliance review:** have Mpire review the disclosures and program descriptions.
 

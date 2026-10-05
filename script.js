@@ -52,7 +52,7 @@ if (dscrForm) {
   calcDSCR();
 }
 
-// Contact form: posts to Formspree once configured; until then, opens a text message to Tracy.
+// Contact form: submits to Formspree without leaving the page.
 const form = document.getElementById('contact-form');
 if (form) {
   const status = document.getElementById('form-status');
@@ -63,24 +63,18 @@ if (form) {
       return;
     }
     const data = new FormData(form);
-
-    if (form.action.includes('YOUR_FORM_ID')) {
-      const msg = `Hi Tracy, this is ${data.get('name')}. I'm interested in a ${data.get('interest')}`
-        + (data.get('location') ? ` in ${data.get('location')}` : '')
-        + `. ${data.get('message') || ''} My phone: ${data.get('phone')}`;
-      status.textContent = 'Opening your messages app… You can also call or text 352-223-0712.';
-      window.location.href = `sms:+13522230712?&body=${encodeURIComponent(msg)}`;
-      return;
-    }
-
+    const button = form.querySelector('button[type="submit"]');
+    button.disabled = true;
     status.textContent = 'Sending…';
     try {
       const res = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
       if (!res.ok) throw new Error();
       form.reset();
-      status.textContent = 'Thank you! Tracy will be in touch shortly.';
+      status.textContent = 'Thank you! Tracy received your message and will be in touch shortly.';
     } catch {
       status.textContent = 'Something went wrong. Please call or text 352-223-0712.';
+    } finally {
+      button.disabled = false;
     }
   });
 }
