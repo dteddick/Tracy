@@ -24,6 +24,11 @@ PROFILES = [
     "https://www.facebook.com/tracy.craleyknappfreeman",
 ]
 
+# "Tracy the Mortgage Lady" brand profiles (FinancialService sameAs)
+BRAND_PROFILES = [
+    "https://www.instagram.com/tracymortgagelady",
+]
+
 ADDRESS = {
     "@type": "PostalAddress",
     "streetAddress": "120 South Dillard Street",
@@ -88,6 +93,7 @@ def base_graph():
             "founder": {"@id": SITE + "#tracy"},
             "employee": {"@id": SITE + "#tracy"},
             "parentOrganization": {"@id": SITE + "#mpire"},
+            "sameAs": BRAND_PROFILES,
             "areaServed": [{"@type": "AdministrativeArea", "name": f"{c} County, FL"} for c in COUNTIES]
                           + [{"@type": "State", "name": "Florida"}, {"@type": "Country", "name": "United States"}],
             "knowsLanguage": "en",

@@ -67,5 +67,5 @@ Pages: `/`, `/dscr-loans/`, `/fix-and-flip-loans/`, `/ground-up-construction-loa
 - [ ] Confirm Mpire's address and legal name; have Mpire compliance review the disclosures and program copy
 - [ ] Confirm the Central Florida service-area list (cities/counties in `src/pages/index.html` and `COUNTIES` in `build.py`), which was an assumption
 - [ ] Google Search Console: verify the site and submit `sitemap.xml`
-- [ ] Google Business Profile; then add profile URLs (Google, LinkedIn, Instagram) to `PROFILES` in `build.py` (Tracy's Facebook is already there as Person `sameAs`)
+- [ ] Google Business Profile; then add remaining profile URLs (Google, LinkedIn) in `build.py`: personal ones to `PROFILES` (Person `sameAs`, has Facebook), brand ones to `BRAND_PROFILES` (FinancialService `sameAs`, has Instagram)
 - Ideas offered but not started: client reviews section, blog, Spanish-language page
