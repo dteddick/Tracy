@@ -1,37 +1,55 @@
 # TracyMortgageLady.com
 
-Website for **Tracy the Mortgage Lady**, a Central Florida mortgage broker and real estate investor specializing in fix & flip, DSCR, bridge and home purchase loans.
+Website for **Tracy Freeman, "Tracy the Mortgage Lady"** (NMLS #2174804), a mortgage broker with Mpire Financial Group LLC (NMLS #2108504).
 
-It's a static site (HTML/CSS/JS, no build step). Open `index.html` in a browser to preview.
+Static site: HTML, CSS and a little JavaScript. No server needed.
 
-## Before going live: fill in your details
+## Structure
 
-Search `index.html` for these placeholders and replace them:
-
-| Placeholder | Where |
+| Path | What it is |
 |---|---|
-| `(000) 000-0000` / `+10000000000` / `+1-000-000-0000` | Phone in contact section and structured data |
-| `hello@tracymortgagelady.com` | Email (also in `script.js`) |
-| `Tracy [Last Name]`, `NMLS #000000` | Footer licensing disclosure (**required for mortgage advertising**) |
-| `[Company Name]`, `Company NMLS #000000`, address | Footer |
-| "Your photo here" block | Add `assets/tracy.jpg` and swap in the `<img>` shown in the comment |
+| `src/layout.html` | Shared page shell: `<head>` SEO tags, header, footer, licensing disclosures, mobile call bar |
+| `src/pages/*.html` | Page content. Each starts with a `<!--meta {...} -->` block (URL, title, description) |
+| `build.py` | Builds the pages into the repo root and generates the JSON-LD schema, FAQ schema and `sitemap.xml` |
+| `index.html`, `*/index.html`, `sitemap.xml` | **Generated** output. Edit `src/` and rebuild, don't edit these by hand |
+| `styles.css`, `script.js`, `assets/` | Styles, menu/calculator/form behavior, icons and social share image |
 
-Have your compliance contact or sponsoring company review the disclosures and loan program descriptions before publishing.
+After editing anything in `src/`, run:
 
-## Contact form
+```sh
+python3 build.py
+```
 
-The form falls back to opening the visitor's email app. To receive submissions directly:
-1. Create a free form at https://formspree.io
-2. Replace `YOUR_FORM_ID` in `index.html` with your form ID.
+## Pages
+
+- `/`: home (about, loan programs, no-W-2/no-tax-return comparison, service area, investor strategies, DSCR calculator, FAQ, contact)
+- `/dscr-loans/`
+- `/fix-and-flip-loans/`
+- `/ground-up-construction-loans/`
+- `/bank-statement-loans/`
+
+## SEO & schema
+
+- Unique title, meta description, canonical URL, Open Graph and Twitter card tags on every page
+- JSON-LD `@graph`: `FinancialService` (the business), `Person` (Tracy, NMLS), `Organization` (Mpire, NMLS), `WebSite`, `WebPage`, `Service` and `BreadcrumbList` on program pages, and `FAQPage` built from the visible FAQs
+- `robots.txt` and `sitemap.xml`; one `<h1>` per page; descriptive internal links between programs
+- Mobile: responsive layout, sticky Call/Text bar, 16px form inputs (no iOS zoom), tap-friendly buttons
+
+Validate after launch with Google's Rich Results Test and https://validator.schema.org, then submit `sitemap.xml` in Google Search Console.
+
+## To do before launch
+
+- **Photo:** add `assets/tracy.jpg` and swap it into the hero (see the comment in `src/pages/index.html`).
+- **Contact form:** create a free form at https://formspree.io and replace `YOUR_FORM_ID` in `src/pages/index.html`. Until then, the form opens a text message to Tracy's phone.
+- **Google Business Profile:** create or claim one. It's the biggest local SEO factor. Once you have profile links (Google, Facebook, LinkedIn, Instagram), add them as `sameAs` in `build.py`.
+- **Compliance review:** have Mpire review the disclosures and program descriptions.
 
 ## Publishing on tracymortgagelady.com (GitHub Pages)
 
-1. Register `tracymortgagelady.com` with a registrar (GoDaddy, Namecheap, Squarespace, etc.).
-2. In this repo on GitHub: **Settings → Pages → Deploy from a branch**, pick the branch and `/ (root)`.
-3. The `CNAME` file already contains `tracymortgagelady.com`. Enter the same domain under **Custom domain**.
-4. At your registrar, add DNS records:
+1. Register `tracymortgagelady.com`.
+2. GitHub repo **Settings → Pages → Deploy from a branch**, choose the branch and `/ (root)`.
+3. `CNAME` already contains `tracymortgagelady.com`. Enter it under **Custom domain**.
+4. DNS at your registrar:
    - `A` records for `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - `CNAME` for `www` → `<your-github-username>.github.io`
-5. Once DNS resolves, tick **Enforce HTTPS**.
-
-Netlify, Cloudflare Pages and Vercel also work: drag-and-drop the folder and point the domain there.
+   - `CNAME` for `www` → `<github-username>.github.io`
+5. Turn on **Enforce HTTPS**.

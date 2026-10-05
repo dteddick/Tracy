@@ -1,0 +1,12 @@
+{
+  "name": "Tracy the Mortgage Lady",
+  "short_name": "Tracy Mortgage",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#fbf8f3",
+  "theme_color": "#13304f",
+  "icons": [
+    { "src": "/assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/assets/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
