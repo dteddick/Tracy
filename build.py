@@ -19,6 +19,11 @@ ROOT = Path(__file__).parent
 SITE = "https://tracymortgagelady.com/"
 PHONE = "+1-352-223-0712"
 
+# Tracy's public profiles (schema sameAs only; phone stays the only contact shown on the site)
+PROFILES = [
+    "https://www.facebook.com/tracy.craleyknappfreeman",
+]
+
 ADDRESS = {
     "@type": "PostalAddress",
     "streetAddress": "120 South Dillard Street",
@@ -64,6 +69,7 @@ def base_graph():
             "image": SITE + "assets/tracy-freeman.jpg",
             "identifier": {"@type": "PropertyValue", "propertyID": "NMLS", "value": "2174804"},
             "worksFor": {"@id": SITE + "#mpire"},
+            "sameAs": PROFILES,
             "knowsAbout": ["DSCR loans", "Fix and flip loans", "Ground-up construction loans",
                            "Bank statement loans", "Real estate investing", "BRRRR strategy",
                            "First-time home buyer loans"],
