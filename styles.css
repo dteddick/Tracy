@@ -64,7 +64,9 @@ p { margin: 0 0 1em; }
 .hero-badges li { background: #fff; border: 1px solid var(--line); padding: 6px 14px; border-radius: 999px; font-size: .88rem; font-weight: 500; color: var(--navy); }
 .hero-card { background: #fff; border-radius: 22px; box-shadow: var(--shadow); padding: 18px; }
 .portrait { aspect-ratio: 4 / 4.2; border-radius: 16px; background: linear-gradient(150deg, var(--navy), var(--teal)); display: grid; place-items: center; color: rgba(255,255,255,.75); font-family: var(--serif); font-size: 1.2rem; overflow: hidden; }
-.portrait img { width: 100%; height: 100%; object-fit: cover; }
+.portrait:has(img) { background: #f7f7f7; }
+.portrait picture { display: contents; }
+.portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
 .facts div { text-align: center; padding: 8px 4px; }
 .facts strong { display: block; color: var(--navy); font-family: var(--serif); }

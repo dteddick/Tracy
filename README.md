@@ -39,7 +39,7 @@ Validate after launch with Google's Rich Results Test and https://validator.sche
 
 ## To do before launch
 
-- **Photo:** add `assets/tracy.jpg` and swap it into the hero (see the comment in `src/pages/index.html`).
+- **Photo:** `assets/tracy-freeman.jpg` (+ `.webp`). To replace it, keep the same file names and a roughly 760×800 crop.
 - **Contact form:** create a free form at https://formspree.io and replace `YOUR_FORM_ID` in `src/pages/index.html`. Until then, the form opens a text message to Tracy's phone.
 - **Google Business Profile:** create or claim one. It's the biggest local SEO factor. Once you have profile links (Google, Facebook, LinkedIn, Instagram), add them as `sameAs` in `build.py`.
 - **Compliance review:** have Mpire review the disclosures and program descriptions.

@@ -61,6 +61,7 @@ def base_graph():
             "description": "Central Florida mortgage broker, real estate investor and former nurse helping investors and home buyers get to the closing table.",
             "url": SITE,
             "telephone": PHONE,
+            "image": SITE + "assets/tracy-freeman.jpg",
             "identifier": {"@type": "PropertyValue", "propertyID": "NMLS", "value": "2174804"},
             "worksFor": {"@id": SITE + "#mpire"},
             "knowsAbout": ["DSCR loans", "Fix and flip loans", "Ground-up construction loans",
