@@ -33,7 +33,7 @@ https://claude.ai/code/session_01LdQirDqNdNXn59E52Tq2ao
 
 ## How the site is built
 
-Static HTML/CSS/JS, hosted on GitHub Pages. No framework.
+Static HTML/CSS/JS, hosted on **Netlify** (Tracy chose Netlify over GitHub Pages). No framework. Netlify settings: branch `claude/amazing-planck-mch4a3`, build command blank, publish directory `/`.
 
 | Path | Purpose |
 |---|---|
@@ -58,11 +58,12 @@ Pages: `/`, `/dscr-loans/`, `/fix-and-flip-loans/`, `/ground-up-construction-loa
 3. **Headshot:** Tracy uploaded her photo. → Cropped and optimized it into `assets/tracy-freeman.*`, placed it in the hero, the Person schema and the OG image.
 4. **Formspree:** Tracy created an account and provided form ID `xbgdjbpy`. → Wired up the form. It was verified with a simulated submission, because the cloud environment blocks formspree.io.
 5. **GitHub:** pushes were blocked until Tracy reconnected GitHub, then everything was pushed to `claude/amazing-planck-mch4a3`.
+6. **Hosting:** Tracy set the site up on Netlify with the custom domain and asked to confirm DNS verification. The cloud session couldn't open Netlify or reach the domain (egress blocked), so Tracy was given the steps to check Domain management → DNS status and provision HTTPS. **Next session: confirm with Tracy whether DNS/HTTPS show verified in Netlify and whether tracymortgagelady.com loads.**
+7. **Browser access:** Tracy asked about Claude controlling her Chrome. The cloud session has no browser tools; for tasks needing her logins (Netlify, DNS registrar, Search Console), use a Claude Desktop session with the Claude in Chrome extension.
 
 ## Open to-dos
 
-- [ ] Turn on GitHub Pages (Settings → Pages → deploy from branch, `/ (root)`), set the custom domain, then enable HTTPS
-- [ ] DNS at the registrar: A records `@` → 185.199.108.153 / .109.153 / .110.153 / .111.153; CNAME `www` → `dteddick.github.io`
+- [ ] Confirm Netlify shows tracymortgagelady.com + www as DNS-verified and HTTPS certificate provisioned (GitHub Pages DNS steps in README no longer apply)
 - [ ] After launch: send a test through the contact form and click Formspree's confirmation email
 - [ ] Confirm Mpire's address and legal name; have Mpire compliance review the disclosures and program copy
 - [ ] Confirm the Central Florida service-area list (cities/counties in `src/pages/index.html` and `COUNTIES` in `build.py`), which was an assumption
