@@ -6,11 +6,12 @@
 <link rel="stylesheet" href="fonts.css">
 <style>
   :root {
-    --navy: #13304f;
-    --teal: #1e8a86;
-    --coral: #e8735a;
-    --ink: #1f2733;
-    --photo-bg: #f7f7f7; /* matches the headshot's background so it blends */
+    --bg-1: #0b1a2c;
+    --bg-2: #050d18;
+    --gold: #d8b46c;
+    --gold-light: #f3dca8;
+    --text: #f4f1ea;
+    --muted: #a9b6c6;
     --serif: "Fraunces", Georgia, serif;
     --sans: "Inter", system-ui, sans-serif;
   }
@@ -18,21 +19,26 @@
   html, body { width: var(--w); height: var(--h); overflow: hidden; }
   body {
     position: relative;
-    background: var(--photo-bg);
     font-family: var(--sans);
-    color: var(--ink);
+    color: var(--text);
     -webkit-font-smoothing: antialiased;
+    background:
+      radial-gradient(ellipse 620px 720px at var(--glow-x) var(--glow-y), rgba(42, 163, 158, .30), transparent 70%),
+      radial-gradient(ellipse 900px 600px at 0% 0%, rgba(216, 180, 108, .10), transparent 70%),
+      linear-gradient(160deg, var(--bg-1), var(--bg-2));
   }
 
   /* Sizes are set per format on <body> */
-  body.feed  { --w: 1080px; --h: 1350px; --band: 330px; --photo-h: 900px; --photo-x: 455px; }
-  body.square{ --w: 1080px; --h: 1080px; --band: 250px; --photo-h: 760px; --photo-x: 520px; }
-  body.story { --w: 1080px; --h: 1920px; --band: 560px; --photo-h: 1000px; --photo-x: 380px; }
+  body.feed   { --w: 1080px; --h: 1350px; --band: 300px; --photo-h: 920px;  --photo-x: 500px; --glow-x: 76%; --glow-y: 40%; }
+  body.square { --w: 1080px; --h: 1080px; --band: 230px; --photo-h: 780px;  --photo-x: 540px; --glow-x: 78%; --glow-y: 38%; }
+  body.story  { --w: 1080px; --h: 1920px; --band: 560px; --photo-h: 1000px; --photo-x: 400px; --glow-x: 72%; --glow-y: 50%; }
 
-  .accent {
-    position: absolute; left: 0; top: 0; width: 100%; height: 14px;
-    background: linear-gradient(90deg, var(--teal), var(--coral));
+  /* Faint blueprint of a house frame: renovation in progress */
+  .blueprint {
+    position: absolute; right: -40px; top: 60px; width: 760px; height: auto;
+    opacity: .16;
   }
+  body.story .blueprint { top: 420px; right: -80px; width: 860px; }
 
   .photo {
     position: absolute;
@@ -40,90 +46,141 @@
     bottom: var(--band);
     height: var(--photo-h);
     width: auto;
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, .55));
+    -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
   }
 
-  .copy { position: absolute; left: 64px; top: 78px; width: 520px; }
+  .copy { position: absolute; left: 64px; top: 72px; width: 560px; }
   .eyebrow {
-    display: inline-block;
-    background: var(--teal); color: #fff;
-    font-weight: 700; font-size: 26px; letter-spacing: .12em; text-transform: uppercase;
-    padding: 12px 22px; border-radius: 999px;
+    display: flex; align-items: center; gap: 16px;
+    color: var(--gold); font-weight: 700; font-size: 24px; letter-spacing: .22em; text-transform: uppercase;
   }
+  .eyebrow::before { content: ""; width: 56px; height: 2px; background: var(--gold); }
   h1 {
-    font-family: var(--serif); font-weight: 700; color: var(--navy);
-    font-size: 76px; line-height: 1.02; letter-spacing: -.01em;
-    margin-top: 30px;
+    font-family: var(--serif); font-weight: 700;
+    font-size: 80px; line-height: 1.0; letter-spacing: -.015em;
+    margin-top: 26px;
   }
-  .stats { margin-top: 38px; display: grid; grid-template-columns: auto 1fr; column-gap: 20px; row-gap: 22px; align-items: end; }
-  .stat { display: contents; }
-  .stat b {
-    font-family: var(--serif); font-weight: 700; color: var(--coral);
-    font-size: 104px; line-height: .9; letter-spacing: -.02em; flex: none;
+  h1 em {
+    display: block; font-style: italic; font-weight: 600;
+    background: linear-gradient(90deg, var(--gold-light), var(--gold));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  .stat span { padding-bottom: 6px; font-size: 30px; font-weight: 600; color: var(--navy); line-height: 1.15; }
-  .stat small { display: block; font-size: 22px; font-weight: 500; color: #5c6878; }
-  .checks { margin-top: 36px; list-style: none; display: grid; gap: 12px; }
-  .checks li { font-size: 28px; font-weight: 600; color: var(--navy); padding-left: 44px; position: relative; }
+  .lead { margin-top: 24px; font-size: 29px; line-height: 1.35; color: #d7dee8; max-width: 520px; }
+
+  .stats { margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 560px; }
+  .card {
+    padding: 22px 22px 20px;
+    border-radius: 18px;
+    background: linear-gradient(160deg, rgba(28, 48, 72, .96), rgba(9, 20, 35, .96));
+    border: 1px solid rgba(216, 180, 108, .45);
+    box-shadow: 0 18px 40px rgba(0,0,0,.35);
+    backdrop-filter: blur(10px);
+  }
+  .card small { display: block; font-size: 18px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .card b {
+    display: block; margin-top: 6px;
+    font-family: var(--serif); font-weight: 700; font-size: 84px; line-height: .95; letter-spacing: -.02em;
+    color: var(--gold-light);
+  }
+  .card span { display: block; margin-top: 6px; font-size: 24px; font-weight: 600; }
+
+  .checks { margin-top: 30px; list-style: none; display: grid; gap: 12px; }
+  .checks li { font-size: 27px; font-weight: 600; padding-left: 44px; position: relative; }
   .checks li::before {
-    content: ""; position: absolute; left: 0; top: 4px; width: 30px; height: 30px; border-radius: 50%;
-    background: var(--teal) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat;
+    content: ""; position: absolute; left: 0; top: 3px; width: 30px; height: 30px; border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%23d8b46c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat;
   }
+
+  .quote {
+    position: absolute; left: 64px; width: 470px;
+    font-family: var(--serif); font-style: italic; font-weight: 500;
+    font-size: 30px; line-height: 1.3; color: #e9e3d6;
+    padding-left: 26px; border-left: 3px solid var(--gold);
+  }
+  .quote cite { display: block; margin-top: 10px; font-family: var(--sans); font-style: normal; font-size: 20px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+  body.feed .quote { bottom: calc(var(--band) + 44px); }
+  body.square .quote { display: none; }
 
   .band {
     position: absolute; left: 0; right: 0; bottom: 0; height: var(--band);
-    background: var(--navy); color: #fff;
-    padding: 40px 64px 30px;
+    background: rgba(3, 8, 15, .92);
+    border-top: 1px solid rgba(216, 180, 108, .55);
+    padding: 34px 64px 28px;
     display: flex; flex-direction: column;
   }
   .cta-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-  .cta-label { font-size: 26px; font-weight: 600; color: #bfe3e0; letter-spacing: .04em; text-transform: uppercase; }
-  .phone { font-family: var(--serif); font-weight: 700; font-size: 66px; white-space: nowrap; line-height: 1; margin-top: 6px; }
+  .cta {
+    display: inline-flex; flex-direction: column;
+    padding: 16px 30px 18px; border-radius: 14px;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    color: #0b1a2c; box-shadow: 0 12px 30px rgba(216, 180, 108, .25);
+  }
+  .cta small { font-size: 20px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  .cta strong { font-family: var(--serif); font-weight: 700; font-size: 58px; line-height: 1; white-space: nowrap; margin-top: 4px; }
   .who { text-align: right; }
-  .who strong { display: block; font-size: 32px; font-weight: 700; }
-  .who span { display: block; white-space: nowrap; font-size: 22px; color: #d5dde7; margin-top: 4px; }
+  .who strong { display: block; font-family: var(--serif); font-weight: 600; font-size: 34px; }
+  .who span { display: block; white-space: nowrap; font-size: 21px; color: var(--muted); margin-top: 4px; }
   .fine {
-    margin-top: auto; font-size: 17px; line-height: 1.4; color: #b8c4d3;
+    margin-top: auto; font-size: 16px; line-height: 1.4; color: #8592a3;
     display: flex; align-items: flex-end; gap: 18px;
   }
   .fine p { flex: 1; }
-  .eho { flex: none; width: 54px; height: 54px; }
+  .eho { flex: none; width: 50px; height: 50px; }
 
-  /* Square: tighter type */
-  body.square .copy { top: 64px; width: 500px; }
-  body.square h1 { font-size: 62px; margin-top: 24px; }
-  body.square .stats { margin-top: 28px; row-gap: 14px; }
-  body.square .stat b { font-size: 88px; }
-  body.square .stat span { font-size: 27px; }
-  body.square .checks { margin-top: 26px; }
+  /* Square: tighter type, no lead line */
+  body.square .copy { top: 58px; width: 540px; }
+  body.square h1 { font-size: 66px; margin-top: 20px; }
+  body.square .lead { display: none; }
+  body.square .stats { margin-top: 30px; width: 540px; }
+  body.square .card b { font-size: 72px; }
+  body.square .card span { font-size: 22px; }
+  body.square .checks { margin-top: 24px; }
   body.square .checks li { font-size: 25px; }
-  body.square .band { padding: 30px 56px 22px; }
-  body.square .phone { font-size: 56px; }
-  body.square .who strong { font-size: 28px; }
-  body.square .who span { font-size: 20px; }
-  body.square .fine { font-size: 15px; }
-  body.square .eho { width: 44px; height: 44px; }
+  body.square .band { padding: 24px 56px 20px; }
+  body.square .cta { padding: 12px 24px 14px; }
+  body.square .cta strong { font-size: 48px; }
+  body.square .who strong { font-size: 30px; }
+  body.square .who span { font-size: 19px; }
+  body.square .fine { font-size: 14px; }
+  body.square .eho { width: 42px; height: 42px; }
 
   /* Story: keep text out of the top ~250px and bottom ~250px UI zones */
-  body.story .copy { top: 260px; width: 560px; }
-  body.story h1 { font-size: 84px; }
-  body.story .band { padding: 50px 64px 260px; }
+  body.story .copy { top: 250px; width: 620px; }
+  body.story h1 { font-size: 92px; }
+  body.story .stats { width: 600px; }
+  body.story .quote { top: 1150px; width: 430px; font-size: 30px; }
+  body.story .lead { max-width: 470px; }
+  body.story .band { padding: 44px 64px 250px; }
   body.story .cta-row { flex-direction: column; align-items: flex-start; gap: 22px; }
-  body.story .phone { font-size: 92px; }
+  body.story .cta strong { font-size: 66px; }
   body.story .who { text-align: left; }
-  body.story .fine { margin-top: 26px; }
-  body.story .photo { bottom: var(--band); }
+  body.story .fine { margin-top: 24px; }
 </style>
 </head>
 <body>
-  <div class="accent"></div>
-  <img class="photo" src="../../../assets/tracy-freeman.jpg" alt="Tracy Freeman">
+  <svg class="blueprint" viewBox="0 0 400 300" fill="none" stroke="#d8b46c" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
+    <path d="M20 140 200 20 380 140"/>
+    <path d="M45 124 200 34 355 124"/>
+    <path d="M50 122V290M350 122V290M20 290h360"/>
+    <path d="M200 34V290M110 82V290M290 82V290M80 102V290M140 62V290M170 44V290M230 44V290M260 62V290M320 102V290" stroke-dasharray="4 6"/>
+    <path d="M50 205h300M50 160h300"/>
+    <path d="M110 82 200 160 290 82M80 102l60 58M320 102l-60 58"/>
+    <rect x="165" y="215" width="70" height="75"/>
+    <rect x="75" y="175" width="45" height="45"/><rect x="280" y="175" width="45" height="45"/>
+  </svg>
+
+  <img class="photo" src="tracy-cutout.png" alt="Tracy Freeman">
 
   <div class="copy">
-    <div class="eyebrow">Fix &amp; Flip Loans</div>
-    <h1>Fund the flip. Keep your cash.</h1>
+    <div class="eyebrow">Fix &amp; Flip Financing</div>
+    <h1>Grow your flipping business <em>faster.</em></h1>
+    <p class="lead">Don't let the next great deal slip away while you wait on cash.</p>
     <div class="stats">
-      <div class="stat"><b>90%</b><span>of purchase price<small>financed</small></span></div>
-      <div class="stat"><b>100%</b><span>of rehab costs<small>financed</small></span></div>
+      <div class="card"><small>Up to</small><b>90%</b><span>of purchase price</span></div>
+      <div class="card"><small>Up to</small><b>100%</b><span>of rehab costs</span></div>
     </div>
     <ul class="checks">
       <li>No W-2s or tax returns</li>
@@ -131,11 +188,13 @@
     </ul>
   </div>
 
+  <blockquote class="quote">“I'm an investor too. I'll fight for your deal like it's my own.”<cite>Tracy Freeman</cite></blockquote>
+
   <div class="band">
     <div class="cta-row">
-      <div>
-        <div class="cta-label">Call or text Tracy</div>
-        <div class="phone">352-223-0712</div>
+      <div class="cta">
+        <small>Call or text Tracy</small>
+        <strong>352-223-0712</strong>
       </div>
       <div class="who">
         <strong>Tracy the Mortgage Lady</strong>
@@ -146,9 +205,9 @@
     <div class="fine">
       <p>Up to 90% of purchase price and 100% of rehab costs, subject to credit approval, property and borrower eligibility, and program guidelines. Business-purpose loans for non-owner-occupied investment property only. Not a commitment to lend. Terms subject to change. Equal Housing Opportunity.</p>
       <svg class="eho" viewBox="0 0 64 64" aria-label="Equal Housing Opportunity">
-        <path d="M32 6 4 26h8v32h40V26h8L32 6z" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
-        <rect x="21" y="32" width="22" height="5" fill="#fff"/>
-        <rect x="21" y="42" width="22" height="5" fill="#fff"/>
+        <path d="M32 6 4 26h8v32h40V26h8L32 6z" fill="none" stroke="#a9b6c6" stroke-width="4" stroke-linejoin="round"/>
+        <rect x="21" y="32" width="22" height="5" fill="#a9b6c6"/>
+        <rect x="21" y="42" width="22" height="5" fill="#a9b6c6"/>
       </svg>
     </div>
   </div>
