@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Fix &amp; Flip Ad</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+  :root {
+    --navy: #13304f;
+    --teal: #1e8a86;
+    --coral: #e8735a;
+    --ink: #1f2733;
+    --photo-bg: #f7f7f7; /* matches the headshot's background so it blends */
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "Inter", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: var(--w); height: var(--h); overflow: hidden; }
+  body {
+    position: relative;
+    background: var(--photo-bg);
+    font-family: var(--sans);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Sizes are set per format on <body> */
+  body.feed  { --w: 1080px; --h: 1350px; --band: 330px; --photo-h: 900px; --photo-x: 455px; }
+  body.square{ --w: 1080px; --h: 1080px; --band: 250px; --photo-h: 760px; --photo-x: 520px; }
+  body.story { --w: 1080px; --h: 1920px; --band: 560px; --photo-h: 1000px; --photo-x: 380px; }
+
+  .accent {
+    position: absolute; left: 0; top: 0; width: 100%; height: 14px;
+    background: linear-gradient(90deg, var(--teal), var(--coral));
+  }
+
+  .photo {
+    position: absolute;
+    left: var(--photo-x);
+    bottom: var(--band);
+    height: var(--photo-h);
+    width: auto;
+  }
+
+  .copy { position: absolute; left: 64px; top: 78px; width: 520px; }
+  .eyebrow {
+    display: inline-block;
+    background: var(--teal); color: #fff;
+    font-weight: 700; font-size: 26px; letter-spacing: .12em; text-transform: uppercase;
+    padding: 12px 22px; border-radius: 999px;
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 700; color: var(--navy);
+    font-size: 76px; line-height: 1.02; letter-spacing: -.01em;
+    margin-top: 30px;
+  }
+  .stats { margin-top: 38px; display: grid; grid-template-columns: auto 1fr; column-gap: 20px; row-gap: 22px; align-items: end; }
+  .stat { display: contents; }
+  .stat b {
+    font-family: var(--serif); font-weight: 700; color: var(--coral);
+    font-size: 104px; line-height: .9; letter-spacing: -.02em; flex: none;
+  }
+  .stat span { padding-bottom: 6px; font-size: 30px; font-weight: 600; color: var(--navy); line-height: 1.15; }
+  .stat small { display: block; font-size: 22px; font-weight: 500; color: #5c6878; }
+  .checks { margin-top: 36px; list-style: none; display: grid; gap: 12px; }
+  .checks li { font-size: 28px; font-weight: 600; color: var(--navy); padding-left: 44px; position: relative; }
+  .checks li::before {
+    content: ""; position: absolute; left: 0; top: 4px; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--teal) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat;
+  }
+
+  .band {
+    position: absolute; left: 0; right: 0; bottom: 0; height: var(--band);
+    background: var(--navy); color: #fff;
+    padding: 40px 64px 30px;
+    display: flex; flex-direction: column;
+  }
+  .cta-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .cta-label { font-size: 26px; font-weight: 600; color: #bfe3e0; letter-spacing: .04em; text-transform: uppercase; }
+  .phone { font-family: var(--serif); font-weight: 700; font-size: 66px; white-space: nowrap; line-height: 1; margin-top: 6px; }
+  .who { text-align: right; }
+  .who strong { display: block; font-size: 32px; font-weight: 700; }
+  .who span { display: block; white-space: nowrap; font-size: 22px; color: #d5dde7; margin-top: 4px; }
+  .fine {
+    margin-top: auto; font-size: 17px; line-height: 1.4; color: #b8c4d3;
+    display: flex; align-items: flex-end; gap: 18px;
+  }
+  .fine p { flex: 1; }
+  .eho { flex: none; width: 54px; height: 54px; }
+
+  /* Square: tighter type */
+  body.square .copy { top: 64px; width: 500px; }
+  body.square h1 { font-size: 62px; margin-top: 24px; }
+  body.square .stats { margin-top: 28px; row-gap: 14px; }
+  body.square .stat b { font-size: 88px; }
+  body.square .stat span { font-size: 27px; }
+  body.square .checks { margin-top: 26px; }
+  body.square .checks li { font-size: 25px; }
+  body.square .band { padding: 30px 56px 22px; }
+  body.square .phone { font-size: 56px; }
+  body.square .who strong { font-size: 28px; }
+  body.square .who span { font-size: 20px; }
+  body.square .fine { font-size: 15px; }
+  body.square .eho { width: 44px; height: 44px; }
+
+  /* Story: keep text out of the top ~250px and bottom ~250px UI zones */
+  body.story .copy { top: 260px; width: 560px; }
+  body.story h1 { font-size: 84px; }
+  body.story .band { padding: 50px 64px 260px; }
+  body.story .cta-row { flex-direction: column; align-items: flex-start; gap: 22px; }
+  body.story .phone { font-size: 92px; }
+  body.story .who { text-align: left; }
+  body.story .fine { margin-top: 26px; }
+  body.story .photo { bottom: var(--band); }
+</style>
+</head>
+<body>
+  <div class="accent"></div>
+  <img class="photo" src="../../../assets/tracy-freeman.jpg" alt="Tracy Freeman">
+
+  <div class="copy">
+    <div class="eyebrow">Fix &amp; Flip Loans</div>
+    <h1>Fund the flip. Keep your cash.</h1>
+    <div class="stats">
+      <div class="stat"><b>90%</b><span>of purchase price<small>financed</small></span></div>
+      <div class="stat"><b>100%</b><span>of rehab costs<small>financed</small></span></div>
+    </div>
+    <ul class="checks">
+      <li>No W-2s or tax returns</li>
+      <li>Lending in most states</li>
+    </ul>
+  </div>
+
+  <div class="band">
+    <div class="cta-row">
+      <div>
+        <div class="cta-label">Call or text Tracy</div>
+        <div class="phone">352-223-0712</div>
+      </div>
+      <div class="who">
+        <strong>Tracy the Mortgage Lady</strong>
+        <span>Tracy Freeman · NMLS #2174804</span>
+        <span>Mpire Financial Group LLC · NMLS #2108504</span>
+      </div>
+    </div>
+    <div class="fine">
+      <p>Up to 90% of purchase price and 100% of rehab costs, subject to credit approval, property and borrower eligibility, and program guidelines. Business-purpose loans for non-owner-occupied investment property only. Not a commitment to lend. Terms subject to change. Equal Housing Opportunity.</p>
+      <svg class="eho" viewBox="0 0 64 64" aria-label="Equal Housing Opportunity">
+        <path d="M32 6 4 26h8v32h40V26h8L32 6z" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
+        <rect x="21" y="32" width="22" height="5" fill="#fff"/>
+        <rect x="21" y="42" width="22" height="5" fill="#fff"/>
+      </svg>
+    </div>
+  </div>
+</body>
+</html>
