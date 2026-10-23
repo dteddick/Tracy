@@ -39,6 +39,7 @@ Static HTML/CSS/JS, hosted on **Netlify** (Tracy chose Netlify over GitHub Pages
 |---|---|
 | `src/layout.html` | Shared shell: `<head>` SEO/OG tags, header nav, footer disclosures, mobile Call/Text bar |
 | `src/pages/*.html` | Page bodies. Each starts with a `<!--meta {...} -->` JSON block (path, title, description, service info) |
+| `build-pdf.js` | Makes `assets/what-is-a-dscr-loan.pdf` from the built article page. Run after `build.py`: `NODE_PATH=$(npm root -g) node build-pdf.js` |
 | `build.py` | Builds pages to the repo root, generates the JSON-LD `@graph` (FinancialService, Person, Organization, WebSite, WebPage, Service, BreadcrumbList, FAQPage from the visible FAQs) and `sitemap.xml` |
 | `index.html`, `*/index.html`, `sitemap.xml` | **Generated.** Edit `src/` then run `python3 build.py`. Never hand-edit these |
 | `styles.css`, `script.js` | Styles; mobile menu, DSCR calculator, Formspree form submit |
