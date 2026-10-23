@@ -45,7 +45,7 @@ Static HTML/CSS/JS, hosted on **Netlify** (Tracy chose Netlify over GitHub Pages
 | `assets/` | `tracy-freeman.jpg/.webp` (headshot), `og-image.png` (social share image with photo), favicons |
 | `robots.txt`, `site.webmanifest`, `CNAME` | SEO / PWA / custom domain |
 
-Pages: `/`, `/dscr-loans/`, `/fix-and-flip-loans/`, `/ground-up-construction-loans/`, `/bank-statement-loans/`
+Pages: `/`, `/dscr-loans/`, `/fix-and-flip-loans/`, `/ground-up-construction-loans/`, `/bank-statement-loans/`, plus the article `/what-is-a-dscr-loan/` (meta `"article"` makes `build.py` emit Article schema instead of Service; `"parent"` adds a breadcrumb level)
 
 **Contact form:** Formspree form ID `xbgdjbpy`. Includes a `_subject` and a `_gotcha` honeypot field. It submits with fetch and shows an inline thank-you.
 

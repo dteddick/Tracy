@@ -155,14 +155,36 @@ def build():
 
         if path:
             page["breadcrumb"] = {"@id": url + "#breadcrumb"}
+            crumbs = [("Home", SITE)]
+            if meta.get("parent"):
+                crumbs.append((meta["parent"]["name"], SITE + meta["parent"]["path"]))
+            crumbs.append((meta.get("crumb") or meta["service"] + "s", url))
             graph.append({
                 "@type": "BreadcrumbList",
                 "@id": url + "#breadcrumb",
                 "itemListElement": [
-                    {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE},
-                    {"@type": "ListItem", "position": 2, "name": meta["service"] + "s", "item": url},
+                    {"@type": "ListItem", "position": i, "name": n, "item": u}
+                    for i, (n, u) in enumerate(crumbs, 1)
                 ],
             })
+
+        if meta.get("article"):
+            art = meta["article"]
+            graph.append({
+                "@type": "Article",
+                "@id": url + "#article",
+                "headline": art["headline"],
+                "description": meta["description"],
+                "url": url,
+                "mainEntityOfPage": {"@id": url + "#webpage"},
+                "image": SITE + "assets/og-image.png",
+                "datePublished": art["datePublished"],
+                "dateModified": today,
+                "author": {"@id": SITE + "#tracy"},
+                "publisher": {"@id": SITE + "#business"},
+                "inLanguage": "en-US",
+            })
+        elif path:
             graph.append({
                 "@type": "Service",
                 "@id": url + "#service",
