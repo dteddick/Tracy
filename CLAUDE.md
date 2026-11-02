@@ -62,6 +62,7 @@ Pages: `/`, `/dscr-loans/`, `/fix-and-flip-loans/`, `/ground-up-construction-loa
 5. **GitHub:** pushes were blocked until Tracy reconnected GitHub, then everything was pushed to `claude/amazing-planck-mch4a3`.
 6. **Hosting:** Tracy set the site up on Netlify with the custom domain and asked to confirm DNS verification. The cloud session couldn't open Netlify or reach the domain (egress blocked), so Tracy was given the steps to check Domain management → DNS status and provision HTTPS. **Next session: confirm with Tracy whether DNS/HTTPS show verified in Netlify and whether tracymortgagelady.com loads.**
 7. **Browser access:** Tracy asked about Claude controlling her Chrome. The cloud session has no browser tools; for tasks needing her logins (Netlify, DNS registrar, Search Console), use a Claude Desktop session with the Claude in Chrome extension.
+8. **DSCR article + Privacy Policy** (session https://claude.ai/code/session_012cVfqaFhuADaYqB8NmXAwj): wrote a ~500-word DSCR article → `/what-is-a-dscr-loan/` with Article schema, a PDF download (`assets/what-is-a-dscr-loan.pdf`, 2 pages, full article) and a one-page Word version (`assets/what-is-a-dscr-loan.docx`, shortened text, not linked on the site). Added Tracy's Privacy Policy text verbatim at `/privacy-policy/`, linked in every footer. Merged into the live branch. Flagged for Tracy: the policy mentions Meta Pixel/Google Analytics (not installed) and text-message consent (the form has no consent checkbox).
 
 ## Open to-dos
 
