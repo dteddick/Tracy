@@ -21,6 +21,7 @@ https://claude.ai/code/session_01LdQirDqNdNXn59E52Tq2ao
 ## Rules Tracy gave (do not break these)
 
 - **Phone 352-223-0712 is the ONLY contact info shown on the site.** No email address and no Mpire office phone anywhere on the site.
+  - Exception: the Privacy Policy (`/privacy-policy/`) uses Tracy's own text, which includes tracy@mpirefi.com. Keep that text as she wrote it.
 - Messaging that must stay on the site:
   - "There is no one-size-fits-all loan" / "There are more options for your real estate strategy"
   - **No W-2s and no tax returns** for DSCR, fix and flip and bank statement loans
@@ -46,7 +47,7 @@ Static HTML/CSS/JS, hosted on **Netlify** (Tracy chose Netlify over GitHub Pages
 | `assets/` | `tracy-freeman.jpg/.webp` (headshot), `og-image.png` (social share image with photo), favicons |
 | `robots.txt`, `site.webmanifest`, `CNAME` | SEO / PWA / custom domain |
 
-Pages: `/`, `/dscr-loans/`, `/fix-and-flip-loans/`, `/ground-up-construction-loans/`, `/bank-statement-loans/`, plus the article `/what-is-a-dscr-loan/` (meta `"article"` makes `build.py` emit Article schema instead of Service; `"parent"` adds a breadcrumb level)
+Pages: `/`, `/dscr-loans/`, `/fix-and-flip-loans/`, `/ground-up-construction-loans/`, `/bank-statement-loans/`, `/privacy-policy/` (plain page: no `service` or `article` meta), plus the article `/what-is-a-dscr-loan/` (meta `"article"` makes `build.py` emit Article schema instead of Service; `"parent"` adds a breadcrumb level)
 
 **Contact form:** Formspree form ID `xbgdjbpy`. Includes a `_subject` and a `_gotcha` honeypot field. It submits with fetch and shows an inline thank-you.
 

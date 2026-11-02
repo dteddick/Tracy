@@ -184,7 +184,7 @@ def build():
                 "publisher": {"@id": SITE + "#business"},
                 "inLanguage": "en-US",
             })
-        elif path:
+        elif meta.get("service"):
             graph.append({
                 "@type": "Service",
                 "@id": url + "#service",
