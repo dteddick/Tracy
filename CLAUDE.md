@@ -67,11 +67,14 @@ Pages: `/`, `/dscr-loans/`, `/fix-and-flip-loans/`, `/ground-up-construction-loa
 
 ## Open to-dos
 
-- [x] Site loads publicly at tracymortgagelady.com (Nov 2026)
-- [ ] Confirm www.tracymortgagelady.com also loads and the browser shows the HTTPS padlock
-- [ ] After launch: send a test through the contact form and click Formspree's confirmation email
-- [ ] Confirm Mpire's address and legal name; have Mpire compliance review the disclosures and program copy
+In priority order. Tick items off as Tracy confirms them.
+
+- [x] Site loads publicly at tracymortgagelady.com (Netlify project switched from Private to Public, Nov 2026)
+- [ ] **1. Test the contact form:** send a test message and click Formspree's one-time confirmation email, or form messages won't be delivered
+- [ ] **2. Google Search Console:** verify the site at search.google.com/search-console and submit `sitemap.xml`
+- [ ] **3. Check www and HTTPS:** confirm www.tracymortgagelady.com also loads and the browser shows the padlock
+- [ ] **4. Google Business Profile:** set it up, then send the profile links (Google, Facebook, Instagram, LinkedIn) so they can be added as `sameAs` in `build.py`
+- [ ] **5. Mpire compliance review** of the website disclosures, program copy and the new DSCR flyer. Raise: the flyer disclaimer says "not litigated with" HUD/FHA (likely should be "affiliated") and "credit property approval" (likely "credit and property"); the flyer lists both an Orlando office (189 S. Orange Ave Suite 2020) and a Maitland office (2450 Maitland Center Pkwy Ste 200); also confirm Mpire's legal name and the address used on the site (currently 120 South Dillard Street, Winter Garden)
 - [ ] Confirm the Central Florida service-area list (cities/counties in `src/pages/index.html` and `COUNTIES` in `build.py`), which was an assumption
-- [ ] Google Search Console: verify the site and submit `sitemap.xml`
-- [ ] Google Business Profile; then add profile URLs (Google, Facebook, LinkedIn, Instagram) as `sameAs` in `build.py`
-- Ideas offered but not started: client reviews section, blog, Spanish-language page
+- [ ] Monthly: open the site in a private/incognito window to check visitors see it (no Netlify login)
+- Ideas offered but not started: client reviews section, blog, Spanish-language page; update the website article and PDF to the shorter one-page DSCR text if Tracy wants them to match the Word version
