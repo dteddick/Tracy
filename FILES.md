@@ -23,6 +23,7 @@ Last updated: November 24, 2026
 ### Marketing
 - **Short biography + member profile details:** `marketing/bios/biography.md`
 - **DSCR flyer** (navy and gold, QR code): `marketing/flyers/dscr-flyer/DSCR-Flyer.png` (social media) and `DSCR-Flyer.pdf` (print/email)
+- **Email/WhatsApp message to Phil (VA) about the DSCR flyer:** `marketing/flyers/dscr-flyer/message-to-phil.md`
 
 ### Articles
 - **What Is a DSCR Loan?**
