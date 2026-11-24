@@ -46,7 +46,10 @@ Static HTML/CSS/JS, hosted on **Netlify** (Tracy chose Netlify over GitHub Pages
 | `styles.css`, `script.js` | Styles; mobile menu, DSCR calculator, Formspree form submit |
 | `assets/` | `tracy-freeman.jpg/.webp` (headshot), `og-image.png` (social share image with photo), favicons |
 | `robots.txt`, `site.webmanifest`, `CNAME` | SEO / PWA / custom domain |
-| `marketing/` | Non-website materials, kept here so nothing is lost: `biography.md` (Tracy's final short bio + profile details), `dscr-flyer/` (flyer source `flyer.html`, `render.cjs`, finished `DSCR-Flyer.png`/`.pdf`). Netlify still serves these files, but `robots.txt` blocks search engines from indexing them, and the site doesn't link to them |
+| `FILES.md` | **Tracy's map of every saved file. Update it whenever anything is saved, moved or added** |
+| `marketing/` | Non-website materials: `bios/`, `flyers/` (one folder per flyer, e.g. `flyers/dscr-flyer/` with `flyer.html`, `render.cjs`, `DSCR-Flyer.png`/`.pdf`), `articles/`, `social-media/` |
+| `business/` | `compliance/` (open questions for Mpire), `notes/` (business facts Tracy shares). Never private client info |
+| `_redirects` | Netlify rules returning 404 for `marketing/`, `business/`, `src/`, `CLAUDE.md`, `FILES.md`, `README.md` and the build scripts, so working files aren't served on the website |
 
 Pages: `/`, `/dscr-loans/`, `/fix-and-flip-loans/`, `/ground-up-construction-loans/`, `/bank-statement-loans/`, `/privacy-policy/` (plain page: no `service` or `article` meta), plus the article `/what-is-a-dscr-loan/` (meta `"article"` makes `build.py` emit Article schema instead of Service; `"parent"` adds a breadcrumb level)
 
@@ -66,11 +69,13 @@ Pages: `/`, `/dscr-loans/`, `/fix-and-flip-loans/`, `/ground-up-construction-loa
 8. **DSCR article + Privacy Policy** (session https://claude.ai/code/session_012cVfqaFhuADaYqB8NmXAwj): wrote a ~500-word DSCR article → `/what-is-a-dscr-loan/` with Article schema, a PDF download (`assets/what-is-a-dscr-loan.pdf`, 2 pages, full article) and a one-page Word version (`assets/what-is-a-dscr-loan.docx`, shortened text, not linked on the site). Added Tracy's Privacy Policy text verbatim at `/privacy-policy/`, linked in every footer. Merged into the live branch. Flagged for Tracy: the policy mentions Meta Pixel/Google Analytics (not installed) and text-message consent (the form has no consent checkbox).
 9. **Site was private on Netlify:** the QR code on a new DSCR flyer led visitors to a Netlify login. The QR code was correct; the Netlify project (`gentle-capybara-544db2`) was set to **Private**, so only team members could view the site. Tracy clicked **Make public** (Public, anyone on the internet) on the project overview, and tracymortgagelady.com now loads for everyone. **If visitors ever see a Netlify login again, check for a "Private" badge next to the project name.** Pushes to the branch don't change this setting.
 10. **Biography + flyer:** wrote Tracy's short biography (nurse 30 years → investor → mortgage broker 2021; from NY, lives in Central Florida; 2 daughters, 6 grandchildren; loves travel with her husband). She asked for no sales pitch. Redesigned her Mpire DSCR flyer (navy/gold, QR code to /dscr-loans/). Both saved in `marketing/`.
+11. **Folder system:** Tracy asked for one organized place for her work. Created `FILES.md` (index), `marketing/{bios,flyers,articles,social-media}` and `business/{compliance,notes}`, plus `_redirects` to keep them off the website. Found the GitHub repo is **public** and advised Tracy to make it private.
 
 ## Saving work (Tracy's request)
 
 Tracy wants **everything she provides saved**. The permanent home is this GitHub repo (`dteddick/Tracy`); cloud session folders are temporary and get wiped. So:
-- Save every deliverable (text, flyers, documents) and any personal or business facts she shares into this repo: website files in `src/` and `assets/`, everything else in `marketing/`. Record new facts and decisions in this file.
+- Save every deliverable (text, flyers, documents) and any business facts she shares into this repo, in the matching folder (see `FILES.md`): website files in `src/` and `assets/`, marketing in `marketing/`, business facts and compliance items in `business/`. Then **add the item to `FILES.md`** and record decisions in this file.
+- Never save private client information (names, SSNs, bank statements, loan files): the repo is public on GitHub and the host serves its files.
 - Commit and push to the session's working branch. Push to `claude/amazing-planck-mch4a3` (the live site) only when she asks for changes to go live.
 
 ## Open to-dos
@@ -84,5 +89,6 @@ In priority order. Tick items off as Tracy confirms them.
 - [ ] **4. Google Business Profile:** set it up, then send the profile links (Google, Facebook, Instagram, LinkedIn) so they can be added as `sameAs` in `build.py`
 - [ ] **5. Mpire compliance review** of the website disclosures, program copy and the new DSCR flyer. Raise: the flyer disclaimer says "not litigated with" HUD/FHA (likely should be "affiliated") and "credit property approval" (likely "credit and property"); the flyer lists both an Orlando office (189 S. Orange Ave Suite 2020) and a Maitland office (2450 Maitland Center Pkwy Ste 200); also confirm Mpire's legal name and the address used on the site (currently 120 South Dillard Street, Winter Garden)
 - [ ] Confirm the Central Florida service-area list (cities/counties in `src/pages/index.html` and `COUNTIES` in `build.py`), which was an assumption
+- [ ] **Make the GitHub repo private** (GitHub → dteddick/Tracy → Settings → General → Danger Zone → Change visibility → Private). Netlify keeps deploying from a private repo. Until then, CLAUDE.md and all saved files are publicly readable on GitHub
 - [ ] Monthly: open the site in a private/incognito window to check visitors see it (no Netlify login)
 - Ideas offered but not started: client reviews section, blog, Spanish-language page; update the website article and PDF to the shorter one-page DSCR text if Tracy wants them to match the Word version

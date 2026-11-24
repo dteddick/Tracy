@@ -1,6 +1,6 @@
 // Renders flyer.html to DSCR-Flyer.png (2160x2160) and DSCR-Flyer.pdf.
 // Run from the repo root:
-//   NODE_PATH=$(npm root -g) node marketing/dscr-flyer/render.cjs "$PWD/marketing/dscr-flyer/flyer.html" "$PWD/marketing/dscr-flyer/DSCR-Flyer"
+//   NODE_PATH=$(npm root -g) node marketing/flyers/dscr-flyer/render.cjs "$PWD/marketing/flyers/dscr-flyer/flyer.html" "$PWD/marketing/flyers/dscr-flyer/DSCR-Flyer"
 const { chromium } = require('playwright');
 const [html, out] = process.argv.slice(2);
 (async () => {
