@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#0d1b2e; --navy2:#13294a; --gold:#c9a24a; --gold2:#e8cd85; --ink:#1b2433; --muted:#5d6878; --cream:#f7f3ea; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html, body { width:1080px; height:1080px; }
+  body { font-family:Inter, sans-serif; color:var(--ink); background:var(--cream); position:relative; overflow:hidden; }
+  .serif { font-family:"Playfair Display", Georgia, serif; }
+  h1, h2, .big, .v, .nameplate strong, .cta .q { font-variant-numeric: lining-nums; }
+
+  /* Hero */
+  .hero { position:relative; height:410px; background:
+      radial-gradient(circle at 78% 30%, rgba(201,162,74,.20), transparent 45%),
+      linear-gradient(135deg, #0a1524 0%, var(--navy2) 100%);
+    color:#fff; padding:40px 56px 0; overflow:hidden; }
+  .hero::after { content:""; position:absolute; left:0; right:0; bottom:0; height:6px; background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold)); }
+  .eyebrow { display:inline-flex; align-items:center; gap:10px; font-size:15px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold2); }
+  .eyebrow::before { content:""; width:34px; height:2px; background:var(--gold); }
+  h1 { font-family:"Playfair Display", serif; font-weight:700; font-size:60px; line-height:1.04; margin:18px 0 0; max-width:610px; letter-spacing:-.5px; }
+  h1 em { font-style:italic; color:var(--gold2); font-weight:600; }
+  .nodocs { margin-top:22px; display:flex; gap:10px; }
+  .nodocs span { font-size:15.5px; font-weight:700; padding:9px 15px; border-radius:999px; background:rgba(255,255,255,.08); border:1px solid rgba(232,205,133,.45); letter-spacing:.02em; }
+  .nodocs span b { color:var(--gold2); }
+  .photo { position:absolute; right:40px; bottom:6px; width:330px; height:378px; border-radius:180px 180px 0 0; overflow:hidden;
+    background:linear-gradient(180deg, #e9e2d3, #f7f3ea); border:4px solid var(--gold); border-bottom:none; }
+  .photo img { width:100%; height:100%; object-fit:cover; object-position:50% 18%; }
+  .nameplate { position:absolute; right:70px; bottom:30px; background:#fff; color:var(--navy); padding:12px 20px 11px; border-radius:12px; box-shadow:0 12px 30px rgba(0,0,0,.35); text-align:center; }
+  .nameplate strong { display:block; font-family:"Playfair Display", serif; font-size:23px; line-height:1.1; }
+  .nameplate span { font-size:12px; font-weight:600; color:var(--muted); letter-spacing:.06em; text-transform:uppercase; }
+
+  /* Stats */
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; padding:22px 56px 0; }
+  .stat { background:#fff; border-radius:16px; padding:18px 16px 16px; border-top:4px solid var(--gold); box-shadow:0 6px 18px rgba(13,27,46,.08); }
+  .stat .big { font-family:"Playfair Display", serif; font-weight:800; font-size:38px; color:var(--navy); line-height:1; }
+  .stat .big small { font-size:21px; font-weight:700; }
+  .stat .lbl { margin-top:8px; font-size:14px; line-height:1.3; color:var(--muted); font-weight:500; }
+
+  /* Body */
+  .body { display:grid; grid-template-columns:1.25fr 1fr; gap:26px; padding:20px 56px 0; }
+  h2 { font-family:"Playfair Display", serif; font-size:25px; color:var(--navy); margin-bottom:12px; }
+  ul.checks { list-style:none; display:grid; gap:9px; }
+  ul.checks li { position:relative; padding-left:32px; font-size:16px; line-height:1.35; }
+  ul.checks li::before { content:"✓"; position:absolute; left:0; top:1px; width:21px; height:21px; border-radius:50%; background:var(--navy); color:var(--gold2); font-size:12px; font-weight:800; display:grid; place-items:center; }
+  ul.checks b { color:var(--navy); }
+  .how { background:var(--navy); color:#fff; border-radius:18px; padding:16px 22px 14px; position:relative; }
+  .how h2 { color:#fff; font-size:22px; margin-bottom:4px; }
+  .how p { font-size:13.5px; color:#c4cfdd; line-height:1.4; }
+  .formula { display:flex; align-items:center; justify-content:space-between; gap:6px; margin:14px 0 10px; text-align:center; }
+  .formula div { flex:1; }
+  .formula .v { font-family:"Playfair Display", serif; font-size:27px; font-weight:700; }
+  .formula .k { font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#9fb0c6; margin-top:2px; }
+  .formula .op { flex:0; font-size:24px; color:var(--gold2); font-weight:300; }
+  .formula .res .v { color:var(--gold2); }
+  .qrrow { display:flex; align-items:center; gap:14px; border-top:1px solid rgba(255,255,255,.14); padding-top:12px; margin-top:4px; }
+  .qrrow .qr { width:78px; height:78px; background:#fff; border-radius:8px; padding:6px; flex:none; }
+  .qrrow .qr img { width:100%; height:100%; display:block; }
+  .qrrow p { font-size:13px; color:#dbe3ee; }
+  .qrrow p b { color:#fff; display:block; font-size:14.5px; }
+
+  /* CTA */
+  .cta { position:absolute; left:56px; right:56px; bottom:118px; height:84px; border-radius:18px; background:linear-gradient(90deg,var(--gold),var(--gold2)); display:flex; align-items:center; justify-content:space-between; padding:0 30px; color:var(--navy); box-shadow:0 10px 26px rgba(201,162,74,.35); }
+  .cta .q { font-family:"Playfair Display", serif; font-size:24px; font-weight:700; line-height:1.15; }
+  .cta .q small { display:block; font-family:Inter, sans-serif; font-size:13.5px; font-weight:600; opacity:.8; }
+  .cta .phone { text-align:right; }
+  .cta .phone strong { display:block; font-size:34px; font-weight:800; letter-spacing:-.5px; line-height:1; }
+  .cta .phone span { font-size:13.5px; font-weight:600; }
+
+  /* Footer */
+  .foot { position:absolute; left:0; right:0; bottom:0; height:104px; background:var(--navy); color:#9fb0c6; display:flex; align-items:center; gap:18px; padding:0 28px 0 20px; }
+  .foot .logos { display:flex; align-items:center; gap:4px; flex:none; }
+  .foot .logos img { width:70px; height:70px; }
+  .ehl { width:56px; color:#fff; text-align:center; font-size:7.5px; font-weight:800; line-height:1.05; letter-spacing:.02em; }
+  .ehl svg { width:40px; height:36px; display:block; margin:0 auto 2px; }
+  .foot .co { flex:none; width:232px; font-size:10.5px; line-height:1.35; color:#dbe3ee; border-right:1px solid rgba(255,255,255,.15); padding-right:16px; }
+  .foot .co b { color:#fff; font-size:12px; }
+  .foot .legal { font-size:7.6px; line-height:1.38; text-align:justify; }
+</style></head>
+<body>
+  <section class="hero">
+    <div class="eyebrow">Investor Cash Flow (DSCR) Program</div>
+    <h1>Qualify on the property&rsquo;s <em>cash flow</em>, not your tax returns.</h1>
+    <div class="nodocs"><span><b>No</b> W-2s</span><span><b>No</b> tax returns</span><span><b>No</b> pay stubs</span></div>
+    <div class="photo"><img src="../../assets/tracy-freeman.jpg" alt=""></div>
+    <div class="nameplate"><strong>Tracy Freeman</strong><span>Mortgage Broker &bull; NMLS #2174804</span></div>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><div class="big">1&ndash;10</div><div class="lbl">Unit properties: single-family to small multifamily</div></div>
+    <div class="stat"><div class="big"><small>$</small>3M</div><div class="lbl">Loan amounts up to $3,000,000</div></div>
+    <div class="stat"><div class="big"><small>$</small>500K</div><div class="lbl">Cash-out up to $500,000</div></div>
+    <div class="stat"><div class="big">75<small>%</small></div><div class="lbl">LTV on non-warrantable condos &amp; condotels</div></div>
+  </section>
+
+  <section class="body">
+    <div>
+      <h2>Why investors choose DSCR</h2>
+      <ul class="checks">
+        <li><b>Close multiple loans</b> at the same time</li>
+        <li><b>No limit</b> on properties owned; finance up to 10</li>
+        <li><b>Qualify on interest-only payments</b>, great for qualifying and cash flow</li>
+        <li><b>Fast closings</b> with minimal conditions</li>
+        <li><b>Purchase, refinance or cash-out</b>, in your name or LLC</li>
+      </ul>
+    </div>
+    <div class="how">
+      <h2>How DSCR works</h2>
+      <p>The property qualifies itself: rent divided by the full monthly payment.</p>
+      <div class="formula">
+        <div><div class="v">$2,400</div><div class="k">Rent</div></div>
+        <div class="op">&divide;</div>
+        <div><div class="v">$2,000</div><div class="k">Payment</div></div>
+        <div class="op">=</div>
+        <div class="res"><div class="v">1.20</div><div class="k">DSCR</div></div>
+      </div>
+      <div class="qrrow">
+        <div class="qr"><img src="qr.svg" alt=""></div>
+        <p><b>Scan to see the program</b>tracymortgagelady.com</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="q">Curious about your eligibility?<small>Let&rsquo;s run the numbers on your next deal.</small></div>
+    <div class="phone"><strong>352-223-0712</strong><span>Call or text &bull; tracy@mpirefi.com</span></div>
+  </section>
+
+  <footer class="foot">
+    <div class="logos">
+      <img src="mpire-m.png" alt="Mpire Financial Group">
+      <div class="ehl"><svg viewBox="0 0 40 36"><path fill="currentColor" d="M20 1 1 14h4v21h30V14h4L20 1Zm9 26H11v-4h18v4Zm0-8H11v-4h18v4Z"/></svg>EQUAL HOUSING LENDER</div>
+    </div>
+    <div class="co"><b>MPIRE FINANCIAL GROUP, LLC</b><br>NMLS #2108504<br>www.mpirefi.com<br>189 S. Orange Ave Suite 2020<br>Orlando, FL 32801</div>
+    <div class="legal">Mpire Financial Group LLC NMLS# 2108504, TRACY FREEMAN, [LO NMLS#2174804],(407) 287-6550 MORTGAGE BROKER ONLY, MORTGAGE LENDER AND MORTGAGE CORRESPONDENT LENDER. This material has not been reviewed, approved or issued by HUD, FHA or any government agency. This company is not litigated with or acting on behalf of or at the direction of HUD/FHA or any other government agency. ALL RIGHTS RESERVED. EQUAL OPPORTUNITY EMPLOYER &amp; HOUSING LENDER. All mortgage products are subject to credit property approval. Rates, Program Terms &amp; Conditions are subject to change without notice. Additional conditions, qualifications, &amp; restrictions may apply. This is not an offer for an extension of credit or a commitment to lend. Mpire Financial Group LLC 2450 Maitland Center Pkwy Ste 200 Maitland, FL 32751 NMLS#2108504 www.mpirefi.com NMLSconsumeraccess.org</div>
+  </footer>
+</body></html>

@@ -46,6 +46,7 @@ Static HTML/CSS/JS, hosted on **Netlify** (Tracy chose Netlify over GitHub Pages
 | `styles.css`, `script.js` | Styles; mobile menu, DSCR calculator, Formspree form submit |
 | `assets/` | `tracy-freeman.jpg/.webp` (headshot), `og-image.png` (social share image with photo), favicons |
 | `robots.txt`, `site.webmanifest`, `CNAME` | SEO / PWA / custom domain |
+| `marketing/` | Non-website materials, kept here so nothing is lost: `biography.md` (Tracy's final short bio + profile details), `dscr-flyer/` (flyer source `flyer.html`, `render.cjs`, finished `DSCR-Flyer.png`/`.pdf`). Netlify still serves these files, but `robots.txt` blocks search engines from indexing them, and the site doesn't link to them |
 
 Pages: `/`, `/dscr-loans/`, `/fix-and-flip-loans/`, `/ground-up-construction-loans/`, `/bank-statement-loans/`, `/privacy-policy/` (plain page: no `service` or `article` meta), plus the article `/what-is-a-dscr-loan/` (meta `"article"` makes `build.py` emit Article schema instead of Service; `"parent"` adds a breadcrumb level)
 
@@ -64,6 +65,13 @@ Pages: `/`, `/dscr-loans/`, `/fix-and-flip-loans/`, `/ground-up-construction-loa
 7. **Browser access:** Tracy asked about Claude controlling her Chrome. The cloud session has no browser tools; for tasks needing her logins (Netlify, DNS registrar, Search Console), use a Claude Desktop session with the Claude in Chrome extension.
 8. **DSCR article + Privacy Policy** (session https://claude.ai/code/session_012cVfqaFhuADaYqB8NmXAwj): wrote a ~500-word DSCR article → `/what-is-a-dscr-loan/` with Article schema, a PDF download (`assets/what-is-a-dscr-loan.pdf`, 2 pages, full article) and a one-page Word version (`assets/what-is-a-dscr-loan.docx`, shortened text, not linked on the site). Added Tracy's Privacy Policy text verbatim at `/privacy-policy/`, linked in every footer. Merged into the live branch. Flagged for Tracy: the policy mentions Meta Pixel/Google Analytics (not installed) and text-message consent (the form has no consent checkbox).
 9. **Site was private on Netlify:** the QR code on a new DSCR flyer led visitors to a Netlify login. The QR code was correct; the Netlify project (`gentle-capybara-544db2`) was set to **Private**, so only team members could view the site. Tracy clicked **Make public** (Public, anyone on the internet) on the project overview, and tracymortgagelady.com now loads for everyone. **If visitors ever see a Netlify login again, check for a "Private" badge next to the project name.** Pushes to the branch don't change this setting.
+10. **Biography + flyer:** wrote Tracy's short biography (nurse 30 years → investor → mortgage broker 2021; from NY, lives in Central Florida; 2 daughters, 6 grandchildren; loves travel with her husband). She asked for no sales pitch. Redesigned her Mpire DSCR flyer (navy/gold, QR code to /dscr-loans/). Both saved in `marketing/`.
+
+## Saving work (Tracy's request)
+
+Tracy wants **everything she provides saved**. The permanent home is this GitHub repo (`dteddick/Tracy`); cloud session folders are temporary and get wiped. So:
+- Save every deliverable (text, flyers, documents) and any personal or business facts she shares into this repo: website files in `src/` and `assets/`, everything else in `marketing/`. Record new facts and decisions in this file.
+- Commit and push to the session's working branch. Push to `claude/amazing-planck-mch4a3` (the live site) only when she asks for changes to go live.
 
 ## Open to-dos
 
