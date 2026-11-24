@@ -63,10 +63,12 @@ Pages: `/`, `/dscr-loans/`, `/fix-and-flip-loans/`, `/ground-up-construction-loa
 6. **Hosting:** Tracy set the site up on Netlify with the custom domain and asked to confirm DNS verification. The cloud session couldn't open Netlify or reach the domain (egress blocked), so Tracy was given the steps to check Domain management → DNS status and provision HTTPS. **Next session: confirm with Tracy whether DNS/HTTPS show verified in Netlify and whether tracymortgagelady.com loads.**
 7. **Browser access:** Tracy asked about Claude controlling her Chrome. The cloud session has no browser tools; for tasks needing her logins (Netlify, DNS registrar, Search Console), use a Claude Desktop session with the Claude in Chrome extension.
 8. **DSCR article + Privacy Policy** (session https://claude.ai/code/session_012cVfqaFhuADaYqB8NmXAwj): wrote a ~500-word DSCR article → `/what-is-a-dscr-loan/` with Article schema, a PDF download (`assets/what-is-a-dscr-loan.pdf`, 2 pages, full article) and a one-page Word version (`assets/what-is-a-dscr-loan.docx`, shortened text, not linked on the site). Added Tracy's Privacy Policy text verbatim at `/privacy-policy/`, linked in every footer. Merged into the live branch. Flagged for Tracy: the policy mentions Meta Pixel/Google Analytics (not installed) and text-message consent (the form has no consent checkbox).
+9. **Site was private on Netlify:** the QR code on a new DSCR flyer led visitors to a Netlify login. The QR code was correct; the Netlify project (`gentle-capybara-544db2`) was set to **Private**, so only team members could view the site. Tracy clicked **Make public** (Public, anyone on the internet) on the project overview, and tracymortgagelady.com now loads for everyone. **If visitors ever see a Netlify login again, check for a "Private" badge next to the project name.** Pushes to the branch don't change this setting.
 
 ## Open to-dos
 
-- [ ] Confirm Netlify shows tracymortgagelady.com + www as DNS-verified and HTTPS certificate provisioned (GitHub Pages DNS steps in README no longer apply)
+- [x] Site loads publicly at tracymortgagelady.com (Nov 2026)
+- [ ] Confirm www.tracymortgagelady.com also loads and the browser shows the HTTPS padlock
 - [ ] After launch: send a test through the contact form and click Formspree's confirmation email
 - [ ] Confirm Mpire's address and legal name; have Mpire compliance review the disclosures and program copy
 - [ ] Confirm the Central Florida service-area list (cities/counties in `src/pages/index.html` and `COUNTIES` in `build.py`), which was an assumption
